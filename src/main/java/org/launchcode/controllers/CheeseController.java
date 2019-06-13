@@ -6,10 +6,7 @@ import org.launchcode.models.CheeseType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -40,8 +37,7 @@ public class CheeseController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddCheeseForm(@ModelAttribute  @Valid Cheese newCheese,
-                                       Errors errors, Model model) {
+    public String processAddCheeseForm(@ModelAttribute  @Valid Cheese newCheese, Errors errors, Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Cheese");
@@ -65,8 +61,24 @@ public class CheeseController {
         for (int cheeseId : cheeseIds) {
             CheeseData.remove(cheeseId);
         }
-
         return "redirect:";
     }
+
+    @RequestMapping(value = "edit/{cheeseId}", method = RequestMethod.GET)
+    public String displayEditForm(Model model, @PathVariable int cheeseId) {
+        Cheese c = CheeseData.getById(cheeseId);
+        model.addAttribute("cheese", c);
+        return "cheese/edit";
+    }
+
+    @RequestMapping(value = "edit/{cheeseId}", method = RequestMethod.POST)
+    public String processEditForm(@PathVariable int cheeseId, String name, String description) {
+        Cheese c = CheeseData.getById(cheeseId);
+        c.setName(name);
+        c.setDescription(description);
+        return "redirect:";
+    }
+
+
 
 }
