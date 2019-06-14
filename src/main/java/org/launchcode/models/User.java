@@ -16,12 +16,19 @@ public class User {
 
 
     @NotNull
-    @Size(min = 6)
+    @Size(min = 6, message = "Passwords must match, may not be empty")
     private String password;
 
     @NotNull
-    @Size(min = 6)
+    @Size(min = 6, message = "Passwords must match, may not be empty")
     private String verify;
+
+    public User(String username, String password, String verify) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.verify = verify;
+    }
 
 
     public String getUsername() {
