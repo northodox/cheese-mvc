@@ -12,19 +12,19 @@
 
     <div class="form-group">
         <label th:for= "email">Email</label>
-        <input class="form-control" th:field = "*{email}" />
+        <input class="form-control" th:field = "*{email}" th:type = "email" />
         <div class = "error" th:errors = "*{email}"></div>
     </div>
 
     <div class = "form-group">
         <label th:for = "password">Password</label>
-        <input class = "form-control" th:field = "*{password}" type = "password"/>
+        <input class = "form-control" th:field = "*{password}" th:type = "password"/>
         <div class = "error" th:errors = "*{password}"></div>
     </div>
 
     <div class = "form-group">
         <label th:for = "verify">Verify Password</label>
-        <input class = "form-control" th:field = "*{verify}" type = "password" />
+        <input class = "form-control" th:field = "*{verify}" th:type = "password" />
         <div class = "error" th:errors = "*{password}"></div>
     </div>
 
