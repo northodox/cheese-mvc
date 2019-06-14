@@ -30,6 +30,9 @@ public class User {
         this.verify = verify;
     }
 
+    public User() {
+    }
+
 
     public String getUsername() {
         return username;
