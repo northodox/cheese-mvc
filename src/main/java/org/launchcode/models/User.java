@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 public class User {
 
     @NotNull
-    @Size(min = 5, max = 15)
+    @Size(min = 5, max = 15, message = "Please enter a username between 5 and 15 characters")
     private String username;
 
     @Email
@@ -16,22 +16,20 @@ public class User {
 
 
     @NotNull
-    @Size(min = 6, message = "Passwords must match, may not be empty")
+    @Size(min = 6, message = "Passwords must match, field may not be empty")
     private String password;
 
     @NotNull
-    @Size(min = 6, message = "Passwords must match, may not be empty")
+    @Size(min = 6, message = "Passwords must match, field may not be empty")
     private String verify;
 
-    public User(String username, String password, String verify) {
+    public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.verify = verify;
     }
 
-    public User() {
-    }
+    public User() {}
 
 
     public String getUsername() {
